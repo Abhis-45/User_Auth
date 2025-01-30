@@ -10,7 +10,7 @@ const Otp = () => {
   const handleVerifyOtp = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4002/user/verifyOtp",
+        "https://user-auth-api-ecru.vercel.app/user/verifyOtp",
         { email: location.state.email, otp }
       );
       if (response.data.verified) {
