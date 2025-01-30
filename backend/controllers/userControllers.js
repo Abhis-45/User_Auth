@@ -2,13 +2,6 @@ const User = require("../models/User");
 const OTP = require("../models/userOtp");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
-const cors = require("cors");
-
-app.use(cors({
-origin: ["https://user-auth-api-rust.vercel.app/"],
-methods: ("POST","GET","DELETE"),
-credentials: true
-}));
 
 const transporter = nodemailer.createTransport({
   service: "Gmail",
