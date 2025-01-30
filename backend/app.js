@@ -12,14 +12,13 @@ const { v4: uuidv4 } = require("uuid");
 const PORT = 4002;
 
 app.use(express.json());
-app.use(cors());
 app.use(bodyParser.json());
 app.use("/images", express.static(path.join(__dirname, "uploads")));
 app.use(userRoutes);
 
 app.use(cors(
 origin: ["https://user-auth-api-rust.vercel.app/"],
-methods: ("POST","GET","DELETE"),
+methods: ("POST","GET"),
 credentials: true
 }
 
