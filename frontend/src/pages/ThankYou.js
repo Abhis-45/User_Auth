@@ -10,7 +10,7 @@ const ThankYou = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`http://localhost:4002/user/${user.email}`);
+      await axios.delete(`https://user-auth-api-ecru.vercel.app/user/${user.email}`);
       navigate("/login");
     } catch (error) {
       console.error("Failed to delete account:", error);
