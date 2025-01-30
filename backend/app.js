@@ -18,7 +18,7 @@ app.use(userRoutes);
 
 app.use(cors({
 origin: ["https://user-auth-ui.vercel.app"],
-methods: ("POST","GET","DELETE"),
+methods: ("POST","GET"),
 credentials: true
 }));
 
