@@ -24,7 +24,7 @@ const Login = () => {
     } else {
       setSpiner(true);
       try {
-        const response = await axios.post("http://localhost:4002/user/login", {
+        const response = await axios.post("https://user-auth-api-ecru.vercel.app/user/login", {
           email,
           password,
         });
