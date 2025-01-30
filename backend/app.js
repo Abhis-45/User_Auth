@@ -17,7 +17,7 @@ app.use("/images", express.static(path.join(__dirname, "uploads")));
 app.use(userRoutes);
 
 app.use(cors({
-origin: ["https://user-auth-api-rust.vercel.app/"],
+origin: ["https://user-auth-ui.vercel.app"],
 methods: ("POST","GET","DELETE"),
 credentials: true
 }));
