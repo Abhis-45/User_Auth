@@ -16,7 +16,11 @@ app.use(bodyParser.json());
 app.use("/images", express.static(path.join(__dirname, "uploads")));
 app.use(userRoutes);
 
-app.use(cors());
+app.use(cors({
+origin: ["https://user-auth-ui.vercel.app"],
+methods: ("POST","GET"),
+credentials: true
+}));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
