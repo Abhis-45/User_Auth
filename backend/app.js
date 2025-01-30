@@ -35,6 +35,10 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
+app.get("/hello", (req, res) => {
+  res.send("Hello World");
+});
+
 app.listen(PORT, () => {
   console.log(`Server start at Port No :${PORT}`);
   console.log(`Server is running on http://localhost:${PORT}`);
