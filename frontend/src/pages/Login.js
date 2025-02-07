@@ -24,7 +24,7 @@ const Login = () => {
     } else {
       setSpiner(true);
       try {
-        const response = await axios.post("https://user-auth-api-sln1.onrender.com/user/login", {
+        const response = await axios.post("https://user-auth-api-rust.vercel.app/user/login", {
           email,
           password,
         });
