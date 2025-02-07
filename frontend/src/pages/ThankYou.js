@@ -10,7 +10,7 @@ const ThankYou = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`https://user-auth-api-sln1.onrender.com/user/${user.email}`);
+      await axios.delete(`https://user-auth-api-rust.vercel.app/user/${user.email}`);
       navigate("/login");
     } catch (error) {
       console.error("Failed to delete account:", error);
