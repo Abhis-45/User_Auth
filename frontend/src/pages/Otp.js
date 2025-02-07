@@ -10,7 +10,7 @@ const Otp = () => {
   const handleVerifyOtp = async () => {
     try {
       const response = await axios.post(
-        "https://user-auth-api-sln1.onrender.com/user/verifyOtp",
+        "https://user-auth-api-rust.vercel.app/user/verifyOtp",
         { email: location.state.email, otp }
       );
       if (response.data.verified) {
