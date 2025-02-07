@@ -55,7 +55,7 @@ const Login = () => {
 
     setSpiner(true);
     try {
-      const response = await axios.post('/api/login', formData, { withCredentials: true });
+      await axios.post('/api/login', formData, { withCredentials: true });
       setSpiner(false);
       navigate("/otp", { state: { email: formData.email } });
     } catch (error) {
