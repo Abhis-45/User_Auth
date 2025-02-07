@@ -85,7 +85,7 @@ const Register = () => {
     });
 
     try {
-      await axios.post("https://user-auth-api-rust.vercel.app/user/register", data);
+      await axios.post("https://user-auth-api-sln1.onrender.com/user/register", data);
       navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error);
