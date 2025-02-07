@@ -10,4 +10,3 @@ router.post("/logout", UserController.logout);
 router.delete("/:email", UserController.deleteAccount);
 
 module.exports = router;
-
