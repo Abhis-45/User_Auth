@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ThankYou = () => {
@@ -10,10 +11,21 @@ const ThankYou = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`https://user-auth-api-rust.vercel.app/user/${user.email}`);
-      navigate("/login");
+      await axios.delete(`/api/user/${user.email}`, { withCredentials: true });
+      await handleSignOut();
     } catch (error) {
       console.error("Failed to delete account:", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      const response = await axios.post('/api/logout', {}, { withCredentials: true });
+      toast.success('Logged out successfully');
+      navigate(response.data.redirectTo);
+    } catch (error) {
+      console.error('Logout failed:', error);
+      toast.error('Logout failed');
     }
   };
 
@@ -25,7 +37,7 @@ const ThankYou = () => {
         </div>
         <div className="card-body text-center">
           <img
-            src={`https://user-auth-api-rust.vercel.app/images/${user.image}`}
+            src={`/images/${user.image}`}
             alt="Profile"
             className="img-thumbnail mb-3"
             style={{ width: "150px", height: "150px" }}
@@ -44,6 +56,9 @@ const ThankYou = () => {
           </p>
           <button onClick={handleDeleteAccount} className="btn btn-danger m-2">
             Remove Account
+          </button>
+          <button onClick={handleSignOut} className="btn btn-secondary m-2">
+            Sign Out
           </button>
         </div>
       </div>
