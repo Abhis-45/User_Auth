@@ -25,7 +25,7 @@ const ThankYou = () => {
         </div>
         <div className="card-body text-center">
           <img
-            src={`https://user-auth-api-sln1.onrender.com/images/${user.image}`}
+            src={`https://user-auth-api-rust.vercel.app/images/${user.image}`}
             alt="Profile"
             className="img-thumbnail mb-3"
             style={{ width: "150px", height: "150px" }}
