@@ -10,7 +10,7 @@ const ThankYou = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`https://user-auth-api-rust.vercel.app/user/${user.email}`);
+      await axios.delete(`https://user-auth-api-sln1.onrender.com/user/${user.email}`);
       navigate("/login");
     } catch (error) {
       console.error("Failed to delete account:", error);
@@ -25,7 +25,7 @@ const ThankYou = () => {
         </div>
         <div className="card-body text-center">
           <img
-            src={`https://user-auth-api-rust.vercel.app/images/${user.image}`}
+            src={`https://user-auth-api-sln1.onrender.com/images/${user.image}`}
             alt="Profile"
             className="img-thumbnail mb-3"
             style={{ width: "150px", height: "150px" }}
