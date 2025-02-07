@@ -16,7 +16,6 @@ const Register = () => {
     image: null,
   });
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
@@ -47,6 +46,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
     if (formData.name === "") {
       toast.error("Enter Your Name!");
@@ -84,8 +84,17 @@ const Register = () => {
       }
     });
 
+    for (let [key, value] of data.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     try {
-      await axios.post("https://user-auth-api-rust.vercel.app/user/register", data);
+      await axios.post("/api/register", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
       navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error);
