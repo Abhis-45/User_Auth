@@ -7,16 +7,20 @@ const Otp = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleVerifyOtp = async () => {
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://user-auth-api-rust.vercel.app/user/verifyOtp",
-        { email: location.state.email, otp }
+      const response = await axios.post("/api/verifyOtp",
+        { email: location.state.email, otp },
+        { withCredentials: true }
       );
       if (response.data.verified) {
-        navigate("/dashboard", { state: { user: response.data.user } });
+        navigate("/thankyou", { state: { user: response.data.user } });
+      } else {
+        navigate("/error");
       }
     } catch (error) {
+      console.error("OTP verification failed:", error);
       navigate("/error");
     }
   };
@@ -26,21 +30,22 @@ const Otp = () => {
       <section>
         <div className="form_data">
           <div className="form_heading">
-            <h1>Otp Validation</h1>
+            <h1>OTP Validation</h1>
           </div>
-          <form>
+          <form onSubmit={handleVerifyOtp}>
             <div className="form_input">
-              <label htmlFor="otp">Enter Otp</label>
+              <label htmlFor="otp">Enter OTP</label>
               <input
                 type="text"
+                name="otp"
+                id="otp"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
-                placeholder="Enter OTP"
+                placeholder="Enter your OTP"
+                required
               />
             </div>
-            <button className="btn" onClick={handleVerifyOtp}>
-              Verify OTP
-            </button>
+            <button type="submit" className="btn">Verify OTP</button>
           </form>
         </div>
       </section>
