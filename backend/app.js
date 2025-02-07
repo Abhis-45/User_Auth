@@ -9,7 +9,7 @@ const cors = require("cors");
 require("./db/conn");
 const { v4: uuidv4 } = require("uuid");
 
-const PORT = 4002;
+const PORT = process.env.PORT || 4002;
 
 app.use(express.json());
 app.use(bodyParser.json());
