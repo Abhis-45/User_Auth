@@ -89,7 +89,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("/api/register", data, {
+      await axios.POST("/api/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

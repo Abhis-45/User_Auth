@@ -117,7 +117,7 @@ app.post('/api/logout', (req, res) => {
   }
 });
 
-app.post('/api/register', upload.single('image'), async (req, res) => {
+app.POST('/api/register', upload.single('image'), async (req, res) => {
   try {
     console.log("here")
     console.log(req.body)
