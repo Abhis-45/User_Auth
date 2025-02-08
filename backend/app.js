@@ -30,7 +30,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://user-auth-ui.onrender.com'],
+  origin: ['http://localhost:3000', 'https://user-auth-ui.vercel.app/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   allowedHeaders: ['Content-Type', 'Authorization'], 
   credentials: true 
