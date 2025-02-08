@@ -19,17 +19,12 @@
     "uuid": "^11.0.5",
     "web-vitals": "^2.1.4"
   },
-    "scripts": {
-    "dev": "cp .env.dev .env && next dev",
-    "build": "cp .env.prod .env && next build",
-    "build:dev": "cp .env.dev .env && next build",
-    "build:prod": "cp .env.prod .env && next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test": "vitest",
-    "test-ui": "vitest --ui --coverage",
-    "coverage": "vitest run --coverage",
-    "vitest-preview": "vitest-preview"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "set-node-options": "set NODE_OPTIONS=--openssl-legacy-provider"
   },
   "eslintConfig": {
     "extends": [
