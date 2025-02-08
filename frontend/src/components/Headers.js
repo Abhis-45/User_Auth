@@ -17,6 +17,11 @@ const Headers = () => {
           </Nav>
         </Container>
       </Navbar>
+      <Navbar bg="dark" variant="dark" fixed="bottom">
+      <Container className="justify-content-center">
+        <p className="text-light mb-0">© 2025 User_Auth. All rights reserved.</p>
+      </Container>
+    </Navbar>
     </>
   );
 };

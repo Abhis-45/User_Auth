@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const path = require("path");
-const userRoutes = require("./Routes/user");
 const app = express();
 const cors = require("cors");
 require("./db/conn");
@@ -22,7 +21,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "uploads")));
-app.use(userRoutes);
 
 app.use(session({
   secret: 'abcde',
@@ -32,7 +30,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  //origin: 'http://localhost:3000', // for local
+  // origin: 'http://localhost:3000', // for local
   origin: 'https://user-auth-ui.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
   allowedHeaders: ['Content-Type', 'Authorization'], 
@@ -49,8 +47,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
-app.use("/user", upload.single("image"), userRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -123,7 +119,6 @@ app.post('/api/register', upload.single('image'), async (req, res) => {
     const image = req.file ? req.file.filename : null;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ name, email, password: hashedPassword, companyName, age, dob, image });
-    console.log(user);
     await user.save();
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {

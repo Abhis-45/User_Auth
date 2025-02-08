@@ -22,31 +22,9 @@ const Register = () => {
       ...formData,
       [name]: files ? files[0] : value,
     });
-
-    if (name === "dob") {
-      const age = calculateAge(value);
-      setFormData((prevData) => ({
-        ...prevData,
-        age: age,
-        dob: value,
-      }));
-    }
-  };
-
-  const calculateAge = (dob) => {
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDifference = today.getMonth() - birthDate.getMonth();
-    const dayDifference = today.getDate() - birthDate.getDate();
-    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-      age--;
-    }
-    return age;
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault();
     if (formData.name === "") {
       toast.error("Enter Your Name!");
@@ -66,6 +44,12 @@ const Register = () => {
     } else if (formData.dob === "") {
       toast.error("Enter Your Date of Birth!");
       return;
+    } else if (formData.age === "") {
+      toast.error("Enter Your Age!");
+      return;
+    } else if (formData.age < 0 || formData.age > 150) {
+      toast.error("enter valid age");
+      return;
     } else if (formData.image === null) {
       toast.error("Upload Your Profile Image!");
       return;
@@ -83,10 +67,6 @@ const Register = () => {
         data.append(key, formData[key]);
       }
     });
-
-    for (let [key, value] of data.entries()) {
-      console.log(`${key}: ${value}`);
-    }
 
     try {
       await axios.post("/api/register", data, {
@@ -112,7 +92,7 @@ const Register = () => {
             <h1>Sign Up</h1>
             <p style={{ textAlign: "center" }}>Welcome to you</p>
           </div>
-          <form onSubmit={handleSubmit} enctype="multipart/form-data"> 
+          <form onSubmit={handleSubmit}> 
             <div className="form_input">
               <label htmlFor="name">Name</label>
               <input
@@ -170,8 +150,7 @@ const Register = () => {
                 type="number"
                 name="age"
                 id="age"
-                value={formData.age}
-                readOnly
+                onChange={handleChange}
                 placeholder="Enter Your Age"
               />
             </div>

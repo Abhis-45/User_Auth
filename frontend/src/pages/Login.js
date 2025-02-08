@@ -60,6 +60,7 @@ const Login = () => {
       navigate("/otp", { state: { email: formData.email } });
     } catch (error) {
       setSpiner(false);
+      navigate("/error");
       console.error('Login failed:', error);
       toast.error('Login failed');
     }
