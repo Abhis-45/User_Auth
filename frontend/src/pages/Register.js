@@ -16,6 +16,7 @@ const Register = () => {
     image: null,
   });
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
@@ -26,6 +27,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+
     if (formData.name === "") {
       toast.error("Enter Your Name!");
       return;
@@ -38,6 +41,9 @@ const Register = () => {
     } else if (formData.password === "") {
       toast.error("Enter Your Password!");
       return;
+    } else if (!passwordRegex.test(formData.password)) {
+      toast.error("Password must be at least 10 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+      return;
     } else if (formData.companyName === "") {
       toast.error("Enter Your Company Name!");
       return;
@@ -48,7 +54,7 @@ const Register = () => {
       toast.error("Enter Your Age!");
       return;
     } else if (formData.age < 0 || formData.age > 150) {
-      toast.error("enter valid age");
+      toast.error("Enter a valid age");
       return;
     } else if (formData.image === null) {
       toast.error("Upload Your Profile Image!");
@@ -81,6 +87,7 @@ const Register = () => {
       toast.error("Registration failed");
     }
   };
+
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -92,7 +99,7 @@ const Register = () => {
             <h1>Sign Up</h1>
             <p style={{ textAlign: "center" }}>Welcome to you</p>
           </div>
-          <form onSubmit={handleSubmit}> 
+          <form onSubmit={handleSubmit}>
             <div className="form_input">
               <label htmlFor="name">Name</label>
               <input

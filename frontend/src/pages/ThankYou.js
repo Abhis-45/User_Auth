@@ -12,9 +12,11 @@ const ThankYou = () => {
   const handleDeleteAccount = async () => {
     try {
       await axios.delete(`/api/user/${user.email}`, { withCredentials: true });
-      await handleSignOut();
+      toast.success('Account deleted successfully');
+      navigate('/');
     } catch (error) {
       console.error("Failed to delete account:", error);
+      toast.error('Failed to delete account');
     }
   };
 
@@ -22,7 +24,7 @@ const ThankYou = () => {
     try {
       const response = await axios.post('/api/logout', {}, { withCredentials: true });
       toast.success('Logged out successfully');
-      navigate(response.data.redirectTo);
+      navigate('/');
     } catch (error) {
       console.error('Logout failed:', error);
       toast.error('Logout failed');
