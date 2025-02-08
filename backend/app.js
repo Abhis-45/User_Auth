@@ -117,11 +117,8 @@ app.post('/api/logout', (req, res) => {
   }
 });
 
-app.POST('/api/register', upload.single('image'), async (req, res) => {
+app.post('/api/register', upload.single('image'), async (req, res) => {
   try {
-    console.log("here")
-    console.log(req.body)
-    console.log(req.file)
     const { name, email, password, companyName, age, dob } = req.body;
     const image = req.file ? req.file.filename : null;
     const hashedPassword = await bcrypt.hash(password, 10);

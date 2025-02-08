@@ -89,7 +89,7 @@ const Register = () => {
     }
 
     try {
-      await axios.POST("/api/register", data, {
+      await axios.post("/api/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -112,7 +112,7 @@ const Register = () => {
             <h1>Sign Up</h1>
             <p style={{ textAlign: "center" }}>Welcome to you</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} enctype="multipart/form-data"> 
             <div className="form_input">
               <label htmlFor="name">Name</label>
               <input
